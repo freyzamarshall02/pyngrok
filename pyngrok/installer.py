@@ -7,6 +7,7 @@ import os
 import platform
 import socket
 import sys
+import tarfile
 import tempfile
 import threading
 import time
@@ -197,16 +198,21 @@ def install_ngrok(ngrok_path: str,
 def _install_ngrok_zip(ngrok_path: str,
                        zip_path: str) -> None:
     """
-    Extract the ``ngrok`` zip file to the given path.
+    Extract the ``ngrok`` zip or tgz file to the given path.
 
     :param ngrok_path: The path where ``ngrok`` will be installed.
-    :param zip_path: The path to the ``ngrok`` zip file to be extracted.
+    :param zip_path: The path to the ``ngrok`` zip/tgz file to be extracted.
     """
     _print_progress("Installing ngrok ... ")
 
-    with zipfile.ZipFile(zip_path, "r") as zip_ref:
-        logger.debug(f"Extracting ngrok binary from {zip_path} to {ngrok_path} ...")
-        zip_ref.extractall(os.path.dirname(ngrok_path))
+    if zip_path.endswith(".tgz") or zip_path.endswith(".tar.gz"):
+        with tarfile.open(zip_path, "r:gz") as tar_ref:
+            logger.debug(f"Extracting ngrok binary from {zip_path} to {ngrok_path} ...")
+            tar_ref.extractall(os.path.dirname(ngrok_path))
+    else:
+        with zipfile.ZipFile(zip_path, "r") as zip_ref:
+            logger.debug(f"Extracting ngrok binary from {zip_path} to {ngrok_path} ...")
+            zip_ref.extractall(os.path.dirname(ngrok_path))
 
     os.chmod(ngrok_path, int("700", 8))
 
