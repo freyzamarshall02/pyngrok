@@ -44,7 +44,7 @@ PLATFORMS_V3 = {
     "windows_x86_64_arm": CDN_V3_URL_PREFIX + "ngrok-v3-stable-windows-arm64.zip",
     "linux_i386": CDN_V3_URL_PREFIX + "ngrok-v3-stable-linux-386.zip",
     "linux_i386_arm": CDN_V3_URL_PREFIX + "ngrok-v3-stable-linux-arm.zip",
-    "linux_x86_64": CDN_V3_URL_PREFIX + "ngrok-v3-stable-linux-amd64.zip",
+    "linux_x86_64": CDN_V3_URL_PREFIX + "ngrok-v3-stable-linux-amd64.tgz",
     "linux_x86_64_arm": CDN_V3_URL_PREFIX + "ngrok-v3-stable-linux-arm64.zip",
     "linux_s390x": CDN_V3_URL_PREFIX + "ngrok-v3-stable-linux-s390x.zip",
     "linux_ppc64": CDN_V3_URL_PREFIX + "ngrok-v3-stable-linux-ppc64.zip",
